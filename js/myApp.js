@@ -29,7 +29,7 @@ function getUnanswered(tags) {
 	$.ajax({
 		type: "GET",
 		data: request,
-		url: "http://api.stackexchange.com/2.2/questions/unanswered",
+		url: "https://api.stackexchange.com/2.2/questions/unanswered",
 		dataType: "jsonp",
 		success: function(result) { //result is the data/the data is the result of our key/value pairs in our request object.
 			console.log(result);
@@ -53,7 +53,7 @@ function getInspiration(tag) { //a function for making a GETRequest for obtainin
 	$.ajax({
 		type: "GET",
 		data: request,
-		url: "http://api.stackexchange.com/2.2/tags/" +tag+ "/top-answerers/all_time", //the endpoint stops before the query (?)
+		url: "https://api.stackexchange.com/2.2/tags/" +tag+ "/top-answerers/all_time", //the endpoint stops before the query (?)
 		dataType: "jsonp",
 		success: function(result) {
 			//console.log("here are the results to this tag: " +result);
@@ -89,7 +89,7 @@ function showQuestion(question) {//question is the 'value' and the value is resu
 	// set some properties related to asker
 	var asker = result.find('.asker');
 	asker.html('<p>Name: <a target="_blank" '+
-		'href=http://stackoverflow.com/users/' + question.owner.user_id + ' >' +
+		'href=https://stackoverflow.com/users/' + question.owner.user_id + ' >' +
 		question.owner.display_name +
 		'</a></p>' +
 		'<p>Reputation: ' + question.owner.reputation + '</p>'
