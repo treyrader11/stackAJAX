@@ -1,6 +1,6 @@
 .container {
 	margin: 3em auto;
-	width: 600px;
+	width: 600px; /*this horizontally centers the element*/
 }
 
 .hidden {
@@ -44,4 +44,13 @@
 .error {
 	background-color: #F78181;
 	padding: 1em;
+}
+
+
+.red {
+	background: red;
+	padding: 30px;
+	width: 10%;
+	margin: 0 auto;
+	float: left;
 }

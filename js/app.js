@@ -7,7 +7,7 @@ var showQuestion = function(question) {
 	
 	// Set the question properties in result
 	var questionElem = result.find('.question-text a');
-	questionElem.attr('href', question.link);
+	questionElem.attr('href', question.link); 
 	questionElem.text(question.title);
 
 	// set the date asked property in result
@@ -30,6 +30,11 @@ var showQuestion = function(question) {
 
 	return result;
 };
+
+
+
+
+
 
 
 // this function takes the results object from StackOverflow
