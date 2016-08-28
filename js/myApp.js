@@ -40,9 +40,8 @@ function getUnanswered(tags) {
 				$('.results').append(question); //this loop gets ran as many times as the length of result.items
 			});
 		},
-		error: function(jqXHR, error) {
-			var errorElem = showError(error);
-			$('.search-results').append(errorElem);
+		error: function() {
+			alert("Request could not be made")
 		}
 	});
 }
@@ -68,9 +67,8 @@ function getInspiration(tag) { //a function for making a GETRequest for obtainin
 				//console.log("inside the each function, the items are: " +value)
 			});
 		},
-		error: function(jqXHR, error) {
-			var errorElem = showError(error);
-			$('.search-results').append(errorElem);
+		error: function() {
+			alert("Request could not be made.")
 		}
 
 	});	
@@ -121,11 +119,7 @@ function showInspiration(value) {
 	return result;
 };
 
-function showError(error){
-	var errorElem = $('.templates .error').clone();
-	var errorText = '<p>' + error + '</p>';
-	errorElem.append(errorText);
-};
+
 
 function showSearchResults(query, resultNum) {
 	var results = resultNum + ' results for <strong>' + query + '</strong>';
