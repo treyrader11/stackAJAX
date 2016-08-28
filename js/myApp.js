@@ -32,15 +32,19 @@ function getUnanswered(tags) {
 		url: "https://api.stackexchange.com/2.2/questions/unanswered",
 		dataType: "jsonp",
 		success: function(result) { //result is the data/the data is the result of our key/value pairs in our request object.
-			console.log(result);
-			//console.log('here is the data for the specifc api request: ' +result.items);
+			//console.log(result);
+			var searchResults = showSearchResults(request.tagged, result.items.length);
+			$('.search-results').html(searchResults);
 			$.each(result.items, function(index, value) {
 				var question = showQuestion(value); //the entire function is an unanswerwed question
 				$('.results').append(question); //this loop gets ran as many times as the length of result.items
-			})
-		}	
-
-	})
+			});
+		},
+		error: function(jqXHR, error) {
+			var errorElem = showError(error);
+			$('.search-results').append(errorElem);
+		}
+	});
 }
 
 
@@ -56,15 +60,20 @@ function getInspiration(tag) { //a function for making a GETRequest for obtainin
 		url: "https://api.stackexchange.com/2.2/tags/" +tag+ "/top-answerers/all_time", //the endpoint stops before the query (?)
 		dataType: "jsonp",
 		success: function(result) {
-			//console.log("here are the results to this tag: " +result);
+			var searchResults = showSearchResults(tag, result.items.length);
+			$('.search-results').html(searchResults);
 			$.each(result.items, function(index, value) {
 				var inspiration = showInspiration(value);
 				$('.results').append(inspiration);
-				console.log("inside the each function, the items are: " +value)
+				//console.log("inside the each function, the items are: " +value)
 			});
-		}	
+		},
+		error: function(jqXHR, error) {
+			var errorElem = showError(error);
+			$('.search-results').append(errorElem);
+		}
 
-	});
+	});	
 }
 
 
@@ -112,7 +121,16 @@ function showInspiration(value) {
 	return result;
 };
 
-	
+function showError(error){
+	var errorElem = $('.templates .error').clone();
+	var errorText = '<p>' + error + '</p>';
+	errorElem.append(errorText);
+};
+
+function showSearchResults(query, resultNum) {
+	var results = resultNum + ' results for <strong>' + query + '</strong>';
+	return results;
+};
 	
 
 
